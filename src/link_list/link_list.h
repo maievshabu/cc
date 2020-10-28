@@ -7,27 +7,33 @@
 #define CC_LIST_H
 
 typedef int u_type;
-typedef struct list list_t;
 
-typedef struct list{
+struct link_node_s{
     u_type data;
-    list_t *next;
-}list_s, *list_sp;
+    link_node_s *next;
+};
 
-list_s* init_list();
+struct link_list_s{
+    link_node_s node;
+    int len;
+};
 
-bool list_is_empty(list_s list);
+typedef link_list_s link_list_t;
 
-void list_push(list_sp list, u_type elem);
+link_list_t* init_list();
 
-bool list_search(list_s list,u_type elem, int* pos);
+bool list_is_empty(link_list_t list);
 
-bool list_remove(list_sp list, int pos);
+void list_push(link_list_t* list, u_type elem);
 
-void list_print(list_s list);
+bool list_search(link_list_t* list,u_type elem, int* pos);
 
-void list_del(list_sp list);
+bool list_remove(link_list_t* list, int pos);
 
-int list_len(list_s list);
+void list_print(link_list_t list);
+
+void list_del(link_list_t* list);
+
+int list_len(link_list_t list);
 
 #endif //CC_LIST_H
